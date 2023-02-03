@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.4
+FROM ubuntu:14.04
 
 RUN apt-get update && \
     apt install make gcc-4.8 g++-4.8 libc6-dev libssl-dev libreadline6-dev libncurses5-dev -y --force-yes && \
