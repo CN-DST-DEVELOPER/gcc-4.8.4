@@ -1,10 +1,13 @@
-FROM ubuntu:14.04
+FROM ghcr.io/cn-dst-developer/dediserver_docker:v0.2.0
 
 RUN apt-get update && \
-    apt install make gcc-4.8 g++-4.8 libc6-dev libssl-dev libreadline6-dev libncurses5-dev binutils-2.26 -y --force-yes && \
+    apt install libc6-dev libssl-dev -y
+   
+RUN sed -i "s@focal@trusty@g" /etc/apt/sources.list && \
+    apt-get update && \
+    apt install make gcc-4.8 g++-4.8 && \
     ln -s /usr/bin/gcc-4.8 /usr/bin/gcc && \
-    ln -s /usr/bin/g++-4.8 /usr/bin/g++ && \
-    rm /usr/bin/ld && \
-    ln -s /usr/lib/binutils-2.26/bin/ld /usr/bin/ld
+    ln -s /usr/bin/g++-4.8 /usr/bin/g++ &&
+    ln -s /usr/lib/x86_64-linux-gnu/libcurl-gnutls.so.4 /lib/libcurl-gnutls.so.4
 
 ENTRYPOINT ["bash"]
