@@ -1,7 +1,7 @@
 FROM ghcr.io/cn-dst-developer/dediserver_docker:v0.2.0
 
 RUN apt-get update && \
-    apt install libc6-dev libssl-dev -y
+    apt install libc6-dev libssl-dev binutils -y
    
 RUN sed -i "s@focal@trusty@g" /etc/apt/sources.list && \
     apt update && \
